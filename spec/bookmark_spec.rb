@@ -4,21 +4,28 @@ describe Bookmark do
 
   describe '.all' do
     it 'returns all the bookmarks' do
-      Bookmark.create(url: 'http://bbc.co.uk')
-      Bookmark.create(url: 'http://cnn.com')
-      Bookmark.create(url: 'http://google.co.uk')
+      bookmark = Bookmark.create(url: 'http://bbc.co.uk', title: 'BBC')
+      Bookmark.create(url: 'http://cnn.com', title: 'CNN')
+      Bookmark.create(url: 'http://google.co.uk', title: 'Google')
 
       bookmarks = Bookmark.all
-      expect(Bookmark.all).to include "http://bbc.co.uk"
-      expect(Bookmark.all).to include "http://cnn.com"
-      expect(Bookmark.all).to include "http://google.co.uk"
+      expect(bookmarks.length).to eq 3
+      expect(bookmarks.first).to be_a Bookmark
+      expect(bookmarks.first.id).to eq bookmark.id
+      expect(bookmarks.first.url).to eq 'http://bbc.co.uk'
+      expect(bookmarks.first.title).to eq 'BBC'
     end
   end
 
   describe '.create' do
     it 'creates a new bookmark' do
-      Bookmark.create(url: "http://newbookmark.com")
-      expect(Bookmark.all).to include "http://newbookmark.com"
+      bookmark = Bookmark.create(url: "http://newbookmark.com", title: "New Bookmark")
+      persisted_data = persisted_data(id: bookmark.id)
+
+      expect(bookmark).to be_a Bookmark
+      expect(bookmark.id).to eq persisted_data['id']
+      expect(bookmark.url).to eq "http://newbookmark.com"
+      expect(bookmark.title).to eq "New Bookmark"
     end
   end
 end

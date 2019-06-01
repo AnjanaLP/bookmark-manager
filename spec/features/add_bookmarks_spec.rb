@@ -5,8 +5,9 @@ feature 'Add bookmarks' do
     expect(current_path).to eq '/bookmarks/new'
 
     fill_in "URL", with: "http://newbookmark.com"
+    fill_in "Title", with: "New Bookmark"
     click_button "Submit"
     expect(current_path).to eq '/bookmarks'
-    expect(page).to have_content "http://newbookmark.com"
+    expect(page).to have_link("New Bookmark", href: "http://newbookmark.com")
   end
 end
