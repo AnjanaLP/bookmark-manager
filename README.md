@@ -16,5 +16,9 @@ I would like to delete a bookmark from bookmark manager
 
 As a time-pressed user
 So that I can keep my bookmark information relevant
-I would like to update a bookmark 
+I would like to update a bookmark
+
+As a time-pressed user
+So that I can note my opinions about a bookmark
+I would like to add comments to a bookmark
 ```
