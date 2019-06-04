@@ -21,4 +21,8 @@ I would like to update a bookmark
 As a time-pressed user
 So that I can note my opinions about a bookmark
 I would like to add comments to a bookmark
+
+As a time-pressed user
+So that I can categorise my bookmarks
+I would like to add a tag to a bookmarks
 ```
