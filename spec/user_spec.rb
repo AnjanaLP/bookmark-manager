@@ -1,4 +1,5 @@
 require 'user'
+require 'bcrypt'
 
 describe User do
 
@@ -31,6 +32,31 @@ describe User do
 
     it 'returns nil if no id is given' do
       expect(User.find(id: nil)).to eq nil
+    end
+  end
+
+  describe '.authenticate' do
+    context 'the user exists and email and password are correct' do
+      it 'returns the user' do
+        user = User.create(email: "anjana@example.com", password: "password123")
+        authenticated_user = User.authenticate(email: "anjana@example.com", password: "password123")
+
+        expect(authenticated_user.id).to eq user.id
+      end
+    end
+
+    context 'the email address is incorrect' do
+      it 'returns nil' do
+        user = User.create(email: "anjana@example.com", password: "password123")
+        expect(User.authenticate(email: "wrong_email@example.com", password: "password123")).to be_nil
+      end
+    end
+
+    context 'the password is incorrect' do
+      it 'returns nil' do
+        user = User.create(email: "anjana@example.com", password: "password123")
+        expect(User.authenticate(email: "anjana@example.com", password: "wrong_password")).to be_nil
+      end
     end
   end
 end
