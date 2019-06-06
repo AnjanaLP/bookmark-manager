@@ -1,4 +1,5 @@
 # Bookmark Manager
+This is a simple Bookmark Manager application which has been developed using the BDD cycle and a test driven approach to fulfil the user stories below.
 
 ## User Stories
 ```
@@ -41,4 +42,40 @@ I would like to login with my email address and password
 As a time-pressed user
 So that I can keep my account secure while offline
 I would like to logout
+```
+
+## How to use
+
+### Install project dependencies
+Clone the repo to your local machine, change into the directory, then:
+```
+$ bundle install
+```
+
+### Setup the databases
+You will need to have the PostgreSQL database management system installed to proceed.
+
+Connect to psql:
+```
+$ psql
+```
+
+Create the development and test databases:
+```
+CREATE DATABASE bookmark_manager;
+CREATE DATABASE bookmark_manager_test;
+```
+
+Connect to each database in psql and run the SQL scripts in the db/migrations folder in the given order.
+
+### Run the app
+```
+$ rackup
+```
+Visit http://localhost:9292 and follow the instructions on screen.
+
+
+### Run tests
+```
+rspec
 ```
