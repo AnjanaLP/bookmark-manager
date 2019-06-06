@@ -1,4 +1,5 @@
 require_relative 'database_connection'
+require_relative 'bookmark'
 
 class Tag
 
@@ -19,5 +20,14 @@ class Tag
     result.map do |tag|
       Tag.new(id: tag['id'], content: tag['content'])
     end
+  end
+
+  def self.find(id:)
+    result = DatabaseConnection.query("SELECT * FROM tags WHERE id = #{id};")
+    Tag.new(id: result[0]['id'], content: result[0]['content'])
+  end
+
+  def bookmarks(bookmark_class = Bookmark)
+    bookmark_class.where(tag_id: id)
   end
 end

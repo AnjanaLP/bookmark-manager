@@ -1,3 +1,7 @@
+<% if @user %>
+  Hello, <%= @user.email %>
+<% end %>
+
 <%= flash[:notice] %>
 
 <ul>
@@ -29,7 +33,7 @@
         Tags:
         <ul>
           <% bookmark.tags.each do |tag| %>
-            <li><%= tag.content %></li>
+            <li><a href="/tags/<%= tag.id %>/bookmarks"><%= tag.content %></a></li>
           <% end %>
         </ul>
       <% end %>

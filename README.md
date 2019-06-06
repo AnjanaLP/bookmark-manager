@@ -25,4 +25,12 @@ I would like to add comments to a bookmark
 As a time-pressed user
 So that I can categorise my bookmarks
 I would like to add a tag to a bookmarks
+
+As a time-pressed user
+So that I can find relevant bookmarks
+I would like to filter bookmarks by a tag
+
+As a time-pressed user
+So that I can have a personalised bookmark manager
+I would like to register with my email address
 ```

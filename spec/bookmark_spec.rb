@@ -89,4 +89,25 @@ describe Bookmark do
       bookmark.tags(tag_class)
     end
   end
+
+  describe '.where' do
+    it 'returns the bookmarks with the given tag id' do
+      bookmark_1 = Bookmark.create(url: "http://firstbookmark.com", title: "First Bookmark")
+      bookmark_2 = Bookmark.create(url: "http://secondbookmark.com", title: "Second Bookmark")
+      tag_1 = Tag.create(content: "First Tag")
+      tag_2 = Tag.create(content: "Second Tag")
+      BookmarkTag.create(bookmark_id: bookmark_1.id, tag_id: tag_1.id)
+      BookmarkTag.create(bookmark_id: bookmark_2.id, tag_id: tag_1.id)
+      BookmarkTag.create(bookmark_id: bookmark_1.id, tag_id: tag_2.id)
+
+      bookmarks = Bookmark.where(tag_id: tag_1.id)
+      result = bookmarks.first
+
+      expect(bookmarks.length).to eq 2
+      expect(result).to be_a Bookmark
+      expect(result.id).to eq bookmark_1.id
+      expect(result.url).to eq bookmark_1.url
+      expect(result.title).to eq bookmark_1.title
+    end
+  end
 end

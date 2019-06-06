@@ -3,6 +3,7 @@ require 'bookmark'
 require 'bookmark_tag'
 
 describe Tag do
+  let(:bookmark_class) { double :bookmark_class }
 
   describe '.create' do
     it 'creates a new tag' do
@@ -32,6 +33,26 @@ describe Tag do
       expect(tag).to be_a Tag
       expect(tag.id).to eq persisted_data['id']
       expect(tag.content).to eq "First Tag"
+    end
+  end
+
+  describe '.find' do
+    it 'finds the tag with the given id' do
+      tag = Tag.create(content: "Test Tag")
+      returned_tag = Tag.find(id: tag.id)
+
+      expect(returned_tag).to be_a Tag
+      expect(returned_tag.id).to eq tag.id
+      expect(returned_tag.content).to eq tag.content
+    end
+  end
+
+  describe '#bookmarks' do
+    it 'calls .where on the bookmark class'do
+      tag = Tag.create(content: "Test Tag")
+
+      expect(bookmark_class).to receive(:where).with(tag_id: tag.id)
+      tag.bookmarks(bookmark_class)
     end
   end
 end
