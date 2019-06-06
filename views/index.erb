@@ -1,12 +1,14 @@
 <h1>Bookmark Manager</h1>
 
-<form action="/users/new" method="get">
-  <input type="submit" value="Sign Up">
-</form>
+<% unless @user %>
+  <form action="/users/new" method="get">
+    <input type="submit" value="Sign Up">
+  </form>
 
-<form action="/sessions/new" method="get">
-  <input type="submit" value="Login">
-</form>
+  <form action="/sessions/new" method="get">
+    <input type="submit" value="Login">
+  </form>
+<% end %>
 
 <form action="/bookmarks" method="get">
   <input type="submit" value="View Bookmarks">

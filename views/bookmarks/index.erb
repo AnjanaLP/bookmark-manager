@@ -1,5 +1,9 @@
 <% if @user %>
   Hello, <%= @user.email %>
+
+  <form action="/sessions/destroy" method="post">
+    <input type="submit" value="Logout">
+  </form>
 <% end %>
 
 <%= flash[:notice] %>

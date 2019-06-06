@@ -12,6 +12,7 @@ class BookmarkManager < Sinatra::Base
   register Sinatra::Flash
 
   get '/' do
+    @user = User.find(id: session[:user_id])
     erb :index
   end
 
@@ -91,9 +92,15 @@ class BookmarkManager < Sinatra::Base
       session[:user_id] = user.id
       redirect('/bookmarks')
     else
-      flash[:notice] = "Please check your email or password"
+      flash[:notice] = "Please check your email/password and try again"
       redirect('/sessions/new')
     end
+  end
+
+  post '/sessions/destroy' do
+    session.clear
+    flash[:notice] = "You have successfully logged out"
+    redirect '/bookmarks'
   end
 
   run! if app_file == $0

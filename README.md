@@ -33,4 +33,12 @@ I would like to filter bookmarks by a tag
 As a time-pressed user
 So that I can have a personalised bookmark manager
 I would like to register with my email address
+
+As a time-pressed user
+So that I can have a secure account
+I would like to login with my email address and password
+
+As a time-pressed user
+So that I can keep my account secure while offline
+I would like to logout
 ```

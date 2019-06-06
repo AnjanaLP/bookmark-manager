@@ -8,13 +8,22 @@ feature 'User authentication' do
   end
 
   context 'correct email and password entered' do
-    scenario 'user successfully logs in' do
+    before do
       fill_in "Email", with: "anjana@example.com"
       fill_in "Password", with: "password123"
       click_button "Login"
+    end
 
+    scenario 'user successfully logs in' do
       expect(current_path).to eq '/bookmarks'
       expect(page).to have_content "Hello, anjana@example.com"
+    end
+
+    scenario 'user successfully logs out' do
+      click_button 'Logout'
+      expect(current_path).to eq '/bookmarks'
+      expect(page).not_to have_content "Hello, anjana@example.com"
+      expect(page).to have_content "You have successfully logged out"
     end
   end
 
@@ -26,7 +35,7 @@ feature 'User authentication' do
 
       expect(current_path).to eq '/sessions/new'
       expect(page).not_to have_content "Hello, anjana@invalid.com"
-      expect(page).to have_content "Please check your email or password"
+      expect(page).to have_content "Please check your email/password and try again"
     end
   end
 
@@ -38,7 +47,7 @@ feature 'User authentication' do
 
       expect(current_path).to eq '/sessions/new'
       expect(page).not_to have_content "Hello, anjana@example.com"
-      expect(page).to have_content "Please check your email or password"
+      expect(page).to have_content "Please check your email/password and try again"
     end
   end
 end
