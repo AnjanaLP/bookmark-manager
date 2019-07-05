@@ -1,6 +1,10 @@
 # Bookmark Manager
 This is a simple Bookmark Manager application which has been developed using the BDD cycle and a test driven approach to fulfil the user stories below.
 
+I have build this app using a Sinatra framework, Rspec and Capybara for testing, and the pg gem to communicate from my ruby code to the databases, one for development and the other for testing (which also makes use of the database cleaner gem to ensure accurate tests).
+
+I have chosen not to use an ORM library at the moment so that I can gain a deeper understanding of how OOP code interacts with relational databases, in addition to familiarising myself with SQL and gaining further practice with unit testing.
+
 ## User Stories
 ```
 As a time-pressed user
